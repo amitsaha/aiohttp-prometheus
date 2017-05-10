@@ -20,8 +20,8 @@ TODO
 Usage
 =====
 
-```python
-from aiohttp_prometheus import setup_metrics
-app =  web.Application()
-setup_metrics(app, "mywebapp")
-```
+.. code::
+
+    from aiohttp_prometheus import setup_metrics
+    app =  web.Application()
+    setup_metrics(app, "mywebapp")
