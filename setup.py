@@ -8,10 +8,14 @@ extras_require = {
 }
 
 
+def read(f):
+    return open(os.path.join(os.path.dirname(__file__), f)).read().strip()
+
+version = 0.1
 setup(name='aiohttp_prometheus',
       version=version,
       description=("prometheus middleware for aiohttp.web"),
-      long_description='\n\n'.join((read('README.rst'), read('CHANGES.txt'))),
+      long_description='\n\n'.join((read('README.rst'), read('CHANGES.rst'))),
       classifiers=[
           'License :: OSI Approved :: Apache Software License',
           'Intended Audience :: Developers',
