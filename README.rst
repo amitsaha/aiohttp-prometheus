@@ -11,7 +11,7 @@ Currently, it exports the following metrics:
    
   + *Labels exported*: ``endpoint``, ``app_name``
 
-  - ``request_count``: Request count. 
+- ``request_count``: Request count. 
   
   + *Labels exported*: ``app_name``, ``method`` (HTTP method), ``endpoint``, ``http_status`` (HTTP status)
 
@@ -39,7 +39,8 @@ The ``aiohttp_prometheus`` package exports a single function ``setup_metrics(app
 which takes in the following arguments:
 
 - ``app``: The application object returned via ``web.Application()``
-- The second argument is the web application name which identifies the web application
+- The second argument is the web application name which identifies the web application and
+  used to set the ``app_name`` label above
 
 Briefly, the following is all you need to do to measure and export prometheus
 metrics from your ``aiohttp`` web application:
