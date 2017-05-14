@@ -1,24 +1,40 @@
 Prometheus middleware for ``aiohttp``
 -------------------------------------
 
-``aiohttp_prometheus`` adds support for exporting `prometheus metrics <https://promehteus.io>`__ to `aiohttp <https://github.com/aio-libs/aiohttp>`__ applications. It is implemented as a `aiohttp middleware <http://aiohttp.readthedocs.io/en/stable/web.html#middlewares>`__.
+``aiohttp_prometheus`` adds support for exporting `prometheus metrics <https://promehteus.io>`__ to 
+`aiohttp <https://github.com/aio-libs/aiohttp>`__ applications. It is implemented as a 
+`aiohttp middleware <http://aiohttp.readthedocs.io/en/stable/web.html#middlewares>`__.
 
 Currently, it exports the following metrics:
 
-- ``request_latency_seconds``: Latency of a request. Labels exported: ``endpoint``, ``app_name``
-- ``request_count``: Request count. Labels exported: ``app_name``, ``method`` (HTTP method), ``endpoint``, ``http_status`` (HTTP status)
-- ``requests_in_progress``: In progress requests. Labels: ``app_name``, ``endpoint``, ``method`` (HTTP method)
+- ``request_latency_seconds``: Latency of a request. 
+  - Labels exported: ``endpoint``, ``app_name``
+- ``request_count``: Request count. 
+  - Labels exported: ``app_name``, ``method`` (HTTP method), ``endpoint``, ``http_status`` (HTTP status)
+- ``requests_in_progress``: In progress requests.
+  - Labels exported: ``app_name``, ``endpoint``, ``method`` (HTTP method)
 
 In addition, the ``/metrics`` endpoint exports these metrics.
 
 Install
 =======
 
-TODO
+I will be publishing to PyPI soon, but for now specifying the following in your ``requirements.txt`` file will 
+install the ``master`` version of the package from github:
+
+.. code::
+
+    git+http://github.com/amitsaha/aiohttp-prometheus.git#egg=aiohttp_prometheus
 
 
 Usage
 =====
+
+The ``aiohttp_prometheus`` package exports a single function ``setup_metrics(app,)``
+which takes in the following arguments:
+
+- ``app``: The application object returned via ``web.Application()``
+- The second argument is the web application name which identifies the web application
 
 Briefly, the following is all you need to do to measure and export prometheus
 metrics from your ``aiohttp`` web application:
@@ -26,6 +42,7 @@ metrics from your ``aiohttp`` web application:
 .. code::
 
     from aiohttp_prometheus import setup_metrics
+    from aiohttp import web
     app =  web.Application()
     setup_metrics(app, "mywebapp")
 
