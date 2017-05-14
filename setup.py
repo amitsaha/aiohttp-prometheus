@@ -2,11 +2,7 @@ from setuptools import setup
 import os
 
 
-install_requires = ['aiohttp>=1.0.2']
-extras_require = {
-    'prometheus_client': ['prometheus_client>=0.0.19'],
-}
-
+install_requires = ['aiohttp>=1.0.2', 'prometheus_client>=0.0.19']
 
 def read(f):
     return open(os.path.join(os.path.dirname(__file__), f)).read().strip()
@@ -30,5 +26,4 @@ setup(name='aiohttp_prometheus',
       license='Apache 2',
       packages=['aiohttp_prometheus'],
       install_requires=install_requires,
-      include_package_data=True,
-      extras_require=extras_require)
+      include_package_data=True,)
