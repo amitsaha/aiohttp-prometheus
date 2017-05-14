@@ -5,7 +5,7 @@ Prometheus middleware for ``aiohttp``
 `aiohttp <https://github.com/aio-libs/aiohttp>`__ applications. It is implemented as a 
 `aiohttp middleware <http://aiohttp.readthedocs.io/en/stable/web.html#middlewares>`__.
 
-Currently, it exports the following metrics:
+Currently, it exports the following metrics via the ``/metrics`` endpoint:
 
 - ``request_latency_seconds``: Latency of a request. 
    
@@ -19,7 +19,6 @@ Currently, it exports the following metrics:
   
   + *Labels exported*: ``app_name``, ``endpoint``, ``method`` (HTTP method)
 
-In addition, the ``/metrics`` endpoint exports these metrics.
 
 Install
 =======
