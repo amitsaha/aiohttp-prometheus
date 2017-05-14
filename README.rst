@@ -29,7 +29,7 @@ metrics from your ``aiohttp`` web application:
     app =  web.Application()
     setup_metrics(app, "mywebapp")
 
-For complete examples, please see `examples <examples>`.
+For complete examples, please see `examples <./examples>`__.
 
 Discussions
 ===========
