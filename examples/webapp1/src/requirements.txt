@@ -1,0 +1,1 @@
+git+http://github.com/amitsaha/aiohttp-prometheus.git#egg=aiohttp_prometheus

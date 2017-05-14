@@ -20,8 +20,19 @@ TODO
 Usage
 =====
 
+Briefly, the following is all you need to do to measure and export prometheus
+metrics from your ``aiohttp`` web application:
+
 .. code::
 
     from aiohttp_prometheus import setup_metrics
     app =  web.Application()
     setup_metrics(app, "mywebapp")
+
+For complete examples, please see `examples <examples>`.
+
+Discussions
+===========
+
+Please file a `issue <https://github.com/amitsaha/aiohttp-prometheus/issues/new>`__
+to file a comment, report an issue or make a suggestion.
