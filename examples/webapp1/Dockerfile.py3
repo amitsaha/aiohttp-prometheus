@@ -10,7 +10,6 @@ RUN set -e; \
 	; \
 	pip install -r src/requirements.txt; \
 	apk del .build-deps;
-
 EXPOSE 8080
 VOLUME /application
 CMD python app.py
