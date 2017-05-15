@@ -4,36 +4,36 @@ import asyncio
 from aiohttp import web
 import prometheus_client
 
+REQUEST_COUNT = Counter(
+      'request_count', 'App Request Count',
+      ['app_name', 'method', 'endpoint', 'http_status']
+)
+REQUEST_LATENCY = Histogram(
+        'request_latency_seconds', 'Request latency',
+        ['app_name', 'endpoint']
+        )
+
+REQUEST_IN_PROGRESS = Gauge(
+        'requests_in_progress', 'Requests in progress',
+        ['app_name', 'endpoint', 'method']
+        )
+
 
 def prom_middleware(app_name):
     @asyncio.coroutine
     def factory(app, handler):
-        app['REQUEST_COUNT'] = Counter(
-          'request_count', 'App Request Count',
-          ['app_name', 'method', 'endpoint', 'http_status']
-        )
-        app['REQUEST_LATENCY'] = Histogram(
-            'request_latency_seconds', 'Request latency',
-            ['app_name', 'endpoint']
-        )
-
-        app['REQUEST_IN_PROGRESS'] = Gauge(
-            'requests_in_progress', 'Requests in progress',
-            ['app_name', 'endpoint', 'method']
-        )
-
         @asyncio.coroutine
         def middleware_handler(request):
             try:
                 request['start_time'] = time.time()
-                app['REQUEST_IN_PROGRESS'].labels(
-                            app_name, request.path, request.method).inc()
+                REQUEST_IN_PROGRESS.labels(
+                        app_name, request.path, request.method).inc()
                 response = yield from handler(request)
                 resp_time = time.time() - request['start_time']
-                request.app['REQUEST_LATENCY'].labels(app_name, request.path).observe(resp_time)
-                request.app['REQUEST_IN_PROGRESS'].labels(app_name, request.path, request.method).dec()
-                request.app['REQUEST_COUNT'].labels(
-                            app_name, request.method, request.path, response.status).inc()
+                REQUEST_LATENCY.labels(app_name, request.path).observe(resp_time)
+                REQUEST_IN_PROGRESS.labels(app_name, request.path, request.method).dec()
+                REQUEST_COUNT.labels(
+                        app_name, request.method, request.path, response.status).inc()
                 return response
             except Exception as ex:
                 raise
