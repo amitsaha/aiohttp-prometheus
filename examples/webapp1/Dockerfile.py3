@@ -1,6 +1,7 @@
 FROM python:3.6.1-alpine
 ADD . /application
 WORKDIR /application
+
 RUN set -e; \
 	apk add --no-cache --virtual .build-deps \
 		gcc \
