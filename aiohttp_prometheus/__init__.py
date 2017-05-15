@@ -12,7 +12,7 @@ def prom_middleware(app_name):
         def middleware_handler(request):
             try:
                 request['start_time'] = time.time()
-                app['REQUEST_IN_PROGRESS'].labels(
+                request.app['REQUEST_IN_PROGRESS'].labels(
                             app_name, request.path, request.method).inc()
                 response = yield from handler(request)
                 resp_time = time.time() - request['start_time']

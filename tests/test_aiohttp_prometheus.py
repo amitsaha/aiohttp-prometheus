@@ -1,5 +1,4 @@
 from aiohttp.test_utils import (
-        _create_app_mock,
         loop_context,
         TestClient as _TestClient
 )
@@ -7,13 +6,6 @@ from aiohttp_prometheus import setup_metrics
 from aiohttp import web
 import pytest
 import asyncio
-
-
-def test_setup_middlware():
-    app = _create_app_mock()
-    app.middlewares = []
-    setup_metrics(app, 'test_app')
-    assert len(app.middlewares) == 1
 
 
 @pytest.fixture
