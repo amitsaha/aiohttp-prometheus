@@ -7,15 +7,15 @@ Prometheus middleware for ``aiohttp``
 
 Currently, it exports the following metrics via the ``/metrics`` endpoint:
 
-- ``request_latency_seconds``: Latency of a request. 
+- ``request_latency_seconds``: Latency of a request in seconds. 
    
   + *Labels exported*: ``endpoint``, ``app_name``
 
-- ``request_count``: Request count. 
+- ``requests_total``: Request count. 
   
   + *Labels exported*: ``app_name``, ``method`` (HTTP method), ``endpoint``, ``http_status`` (HTTP status)
 
-- ``requests_in_progress``: In progress requests.
+- ``requests_in_progress_total``: In progress requests.
   
   + *Labels exported*: ``app_name``, ``endpoint``, ``method`` (HTTP method)
 

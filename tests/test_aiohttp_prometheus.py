@@ -36,6 +36,6 @@ def test_metrics_route(loop, test_client):
         assert resp.status == 200
         text = yield from resp.text()
         assert 'request_latency_seconds' in text
-        assert 'request_count' in text
+        assert 'requests_total' in text
         assert 'requests_in_progress' in text
     loop.run_until_complete(test_get_metrics())

@@ -35,7 +35,7 @@ async def metrics(request):
 
 def setup_metrics(app, app_name):
     app['REQUEST_COUNT'] = Counter(
-      'request_count', 'App Request Count',
+      'requests_total', 'Total Request Count',
       ['app_name', 'method', 'endpoint', 'http_status']
     )
     app['REQUEST_LATENCY'] = Histogram(
@@ -44,7 +44,7 @@ def setup_metrics(app, app_name):
     )
 
     app['REQUEST_IN_PROGRESS'] = Gauge(
-        'requests_in_progress', 'Requests in progress',
+        'requests_in_progress_total', 'Requests in progress',
         ['app_name', 'endpoint', 'method']
     )
 
