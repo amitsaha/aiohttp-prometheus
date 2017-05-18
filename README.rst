@@ -34,7 +34,7 @@ install the ``master`` version of the package from github:
 Usage
 =====
 
-The ``aiohttp_prometheus`` package exports a single function ``setup_metrics(app,)``
+The ``aiohttp_prometheus`` package exports a single function ``setup_metrics(app, 'app_name')``
 which takes in the following arguments:
 
 - ``app``: The application object returned via ``web.Application()``
